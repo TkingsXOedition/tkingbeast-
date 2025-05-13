@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TKingBeast | 94% Win Rate Forex Scalping</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    /* LANGUAGE SELECTOR */
+    .language-selector {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+
+    .language-btn {
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #8b0000;
+      color: #ffd700;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: rgba(10, 0, 20, 0.95);
+      border: 1px solid #4b0082;
+      border-radius: 10px;
+      min-width: 180px;
+      box-shadow: 0 0 20px rgba(75, 0, 130, 0.6);
+      overflow: hidden;
+      z-index: 101;
+    }
+
+    .language-dropdown.show {
+      display: block;
+    }
+
+    .language-option {
+      padding: 10px 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .language-option:hover {
+      background: rgba(139, 0, 0, 0.3);
+    }
+
+    /* 3D BEAST HEADER */
+    #beast-header {
+      height: 200px; /* Increased height for better visibility */
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    /* TRADER PROFILE SECTION */
+    .trader-card {
+      background: linear-gradient(135deg, #1a001a 0%, #000 100%);
+      border: 1px solid #8b0000;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trader-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(139, 0, 0, 0.1) 0%,
+        rgba(75, 0, 130, 0.3) 50%,
+        rgba(139, 0, 0, 0.1) 100%
+      );
+      transform: rotate(30deg);
+      z-index: 0;
+    }
+
+    .trader-card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .trader-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #ff004c;
+      text-shadow: 0 0 10px #FF004C;
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+
+    .trader-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-box {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid #8b0000;
+      border-radius: 10px;
+      padding: 10px 15px;
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: 'Orbitron', sans-serif;
+      color: #ffd700;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    /* BOOK SECTION */
+    .book-section {
+      background: rgba(10, 0, 20, 0.9);
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 30px;
+      border: 1px solid #4b0082;
+      box-shadow: 0 0 40px rgba(75, 0, 130, 0.6);
+    }
+
+    .book-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #ff004c;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .book-title::before, .book-title::after {
+      content: 'TKING BEAST ULTIMATE SCALPING METHOD';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .book-title::before {
+      color: #ff004c;
+      z-index: -1;
+      top: -2px;
+      left: 2px;
+      animation: glitch 2s infinite linear alternate-reverse;
+    }
+
+    .book-title::after {
+      color: #00fff7;
+      z-index: -2;
+      top: 2px;
+      left: -2px;
+      animation: glitch 2s infinite linear alternate;
+    }
+
+    @keyframes glitch {
+      0% { clip: rect(0, 900px, 0, 0); }
+      5% { clip: rect(0, 900px, 100%, 0); }
+      10% { clip: rect(0, 900px, 20px, 0); }
+      15% { clip: rect(0, 900px, 70px, 0); }
+      20% { clip: rect(0, 900px, 40px, 0); }
+      100% { clip: rect(0, 900px, 0, 0); }
+    }
+
+    .book-cover {
+      width: 100%;
+      max-width: 300px;
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(255, 0, 100, 0.8);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .book-cover:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    /* BOOK OVERLAY STYLES */
+    #book-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
+      color: white;
+      padding: 20px;
+      overflow-y: auto;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    #book-overlay-content {
+      max-width: 600px;
+      margin: 50px auto;
+      background: linear-gradient(135deg, #1a001a 0%, #000 100%);
+      padding: 30px;
+      border-radius: 15px;
+      border: 2px solid #8b0000;
+      box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+      position: relative;
+    }
+
+    #close-overlay {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #8b0000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #book-overlay h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #ff004c;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #book-overlay .author {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffd700;
+    }
+
+    #book-overlay ul {
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    #book-overlay li {
+      margin-bottom: 10px;
+    }
+
+    #book-overlay .signature {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      color: #ff004c;
+      margin-top: 30px;
+    }
+
+    /* 3D PAYMENT BUTTON */
+    .payment-btn-container {
+      perspective: 1000px;
+      margin: 30px 0;
+    }
+
+    .payment-btn {
+      display: block;
+      width: 100%;
+      padding: 20px;
+      font-size: 1.3rem;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(45deg, #8b0000, #4b0082);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      text-shadow: 0 0  FFDC10px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 5px 15px rgba(139, 0, 0, 0.6),
+                  0 0 30px rgba(75, 0, 130, 0.4) inset;
+      transform-style: preserve-3d;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .payment-btn.transaction-btn {
+      background: linear-gradient(45deg, #4b0082, #ffd700);
+    }
+
+    .payment-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+      );
+      transform: rotate(30deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    .payment-btn:hover {
+      transform: translateY(-5px) rotateX(10deg);
+      box-shadow: 0 10px 20px rgba(139, 0, 0, 0.8),
+                  0 0 40px rgba(75, 0, 130, 0.6) inset;
+    }
+
+    .payment-btn:active {
+      transform: translateY(0) rotateX(0);
+    }
+
+    /* ROBOT */
+    #robot-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 80px;
+      height: 80px;
+      background: #8b0000;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 0 20px #ff004c;
+      transition: all 9.0s;
+    }
+
+    #robot-button:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 0 30px #ff004c;
+    }
+
+    #robot-button img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+    }
+
+    #robot-popup {
+      display: none;
+      position: fixed;
+      bottom: 130px;
+      right: 30px;
+      background: linear-gradient(45deg, #1a001a, #000);
+      border: 2px solid #ff004c;
+      border-radius: 15px;
+      padding: 15px;
+      max-width: 250px;
+      z-index: 1001;
+      box-shadow: 0 0 20px #ff004c;
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* TIME WIDGET */
+    .time-widget {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid #8b0000;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+    }
+
+    .time-display {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+
+    .session-status {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+    }
+
+    .session-open {
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+      animation: pulse-green 1.5s infinite;
+    }
+
+    .session-closed {
+      color: #ff0000;
+      text-shadow: 0 0 10px #ff0000;
+      animation: pulse-red 1.5s infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    @keyframes pulse-red {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .trader-stats {
+        flex-direction: column;
+      }
+      
+      .book-title {
+        font-size: 1.5rem;
+      }
+      
+      #robot-button {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      #robot-popup {
+        bottom: 100px;
+        right: 20px;
+      }
+
+      #book-overlay-content {
+        margin: 20px auto;
+        padding: 20px;
+      }
+
+      .language-selector {
+        top: 10px;
+        right: 10px;
+      }
+      
+      .language-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+      
+      .language-dropdown {
+        min-width: 160px;
+      }
+    }
+
+    /* ADDED YOUR REQUESTED TEXT STYLE */
+    .access-text {
+      text-align: center;
+      margin: 40px 0;
+      font-family: 'Orbitron', sans-serif;
+      color: #FFD700;
+      text-shadow: 0 0 10px #FFD700;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <!-- LANGUAGE SELECTOR -->
+  <div class="language-selector">
+    <div class="language-btn" id="languageBtn">
+      <span>🌐 English</span>
+    </div>
+    <div class="language-dropdown" id="languageDropdown">
+      <div class="language-option" data-lang="en">🇬🇧 English</div>
+      <div class="language-option" data-lang="am">🇪🇹 አማርኛ (Amharic)</div>
+      <div class="language-option" data-lang="zu">🇿🇦 isiZulu (Zulu)</div>
+      <div class="language-option" data-lang="af">🇿🇦 Afrikaans</div>
+      <div class="language-option" data-lang="zh">🇨🇳 中文 (Chinese)</div>
+      <div class="language-option" data-lang="hi">🇮🇳 हिन्दी (Hindi)</div>
+      <div class="language-option" data-lang="es">🇪🇸 Español (Spanish)</div>
+      <div class="language-option" data-lang="fr">🇫🇷 Français (French)</div>
+      <div class="language-option" data-lang="ar">🇸🇦 العربية (Arabic)</div>
+      <div class="language-option" data-lang="bn">🇧🇩 বাংলা (Bengali)</div>
+      <div class="language-option" data-lang="pt">🇵🇹 Português (Portuguese)</div>
+      <div class="language-option" data-lang="ru">🇷🇺 Русский (Russian)</div>
+      <div class="language-option" data-lang="ur">🇵🇰 اردو (Urdu)</div>
+    </div>
+  </div>
+
+  <!-- 3D BEAST HEADER -->
+  <div id="beast-header"></div>
+
+  <!-- TRADER PROFILE SECTION -->
+  <div class="trader-card">
+    <div class="trader-card-content">
+      <h1 class="trader-title" data-translate="trader_title">TKingBeast - The 94% Win Rate Trader</h1>
+      
+      <div class="trader-stats">
+        <div class="stat-box">
+          <div class="stat-value">94%</div>
+          <div class="stat-label" data-translate="win_rate">Win Rate</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">1,200+</div>
+          <div class="stat-label" data-translate="trades_taken">Trades Taken</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">100%</div>
+          <div class="stat-label" data-translate="skill">skill</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">$30</div>
+          <div class="stat-label" data-translate="book_price">Book Price</div>
+        </div>
+      </div>
+      
+      <p data-translate="journey_text">From blowing accounts to consistent profits - my journey wasn't easy but now I'm sharing the exact strategy that transformed my trading.</p>
+      
+      <p data-translate="year_text">For 1 year straight, I lived on the charts - testing, failing, and finally discovering the patterns that gave me a <strong>94% win rate</strong> in scalping.</p>
+      
+      <p data-translate="book_contains">This book contains everything I wish I knew when I started:</p>
+      <ul>
+        <li data-translate="point1">The precise entry triggers I use daily</li>
+        <li data-translate="point2">How to read price action like an open book</li>
+        <li data-translate="point3">Risk management that protects your capital</li>
+        <li data-translate="point4">The psychological edge that separates winners from losers</li>
+      </ul>
+      
+      <p><strong data-translate="warning">Warning:</strong> <span data-translate="warning_text">This isn't for part-time traders. If you're not ready to treat trading as a serious business, this won't work for you.</span></p>
+    </div>
+  </div>
+
+  <!-- TIME WIDGET -->
+  <div class="time-widget">
+    <div class="time-display" id="current-time">Loading...</div>
+    <div class="session-status" id="session-status">Checking market session...</div>
+  </div>
+
+  <!-- BOOK SECTION -->
+  <div class="book-section">
+    <h1 class="book-title" data-translate="book_title">TKING BEAST ULTIMATE SCALPING BOOK</h1>
+    
+    <img class="book-cover" src="book-cover.jpg" alt="TKingBeast Forex Scalping Book">
+    
+    <p><strong data-translate="learn_title">What you'll learn:</strong></p>
+    <ul>
+      <li data-translate="learn1">My exact 94% win rate scalping strategy</li>
+      <li data-translate="learn2">How to identify high-probability setups</li>
+      <li data-translate="learn3">Precision entry and exit techniques</li>
+      <li data-translate="learn4">Risk management that protects your capital</li>
+      <li data-translate="learn5">The mental game of professional trading</li>
+    </ul>
+    
+    <p><strong data-translate="format">Format:</strong> <span data-translate="format_value">PDF (Password Protected)</span></p>
+    <p><strong data-translate="price">Price:</strong> <span data-translate="price_value">$30 (One-time payment)</span></p>
+    
+    <div class="payment-btn-container">
+      <a href="https://nowpayments.io/payment/?iid=4616924949" class="payment-btn" target="_blank" data-translate="payment_button">
+        I'M READY TO PAY 😤🔱 IT'S TIME TO LOCK IN 
+      </a>
+    </div>
+    
+    <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+      <strong data-translate="after_payment">After payment:</strong>
+    </p>
+    <div class="payment-btn-container">
+      <a href="https://forms.gle/iy6BDavcNHjXTcB28" class="payment-btn transaction-btn" target="_blank" data-translate="transaction_button">
+        SUBMIT YOUR TRANSACTION ID HERE AFTER PAYMENT ‼️
+      </a>
+    </div>
+  </div>
+
+  <!-- YOUR REQUESTED TEXT -->
+  <div class="access-text" data-translate="robot_text">
+    hi I'm tking robot 🤖 u wanna know a secret about him 
+                         just click me😉
+  </div>
+
+  <!-- BOOK OVERLAY -->
+  <div id="book-overlay">
+    <div id="book-overlay-content">
+      <button id="close-overlay">X</button>
+      <h2 data-translate="overlay_title">TKING's Ultimate Forex Scalping Book</h2>
+      <p class="author" data-translate="overlay_author">By TKINGBEAST – The Market Monster</p>
+      
+      <p><em data-translate="overlay_intro">First pay to have me 🤣🤣 – this book isn't free, and it's not for the weak. Only serious traders welcome!</em></p>
+      
+      <p data-translate="overlay_description">This isn't just a PDF – it's the blueprint of a beast 👑. Inside, you'll find powerful scalping strategies, real-life trade secrets, and the exact mindset that took me from hustle to freedom. If you're ready to dominate the charts, this is your weapon ⚔️.</p>
+      
+      <p><strong data-translate="overlay_whats_inside">What's inside:</strong></p>
+      <ul>
+        <li data-translate="overlay_point1">High win-rate scalping strategies 📈</li>
+        <li data-translate="overlay_point2">Simple but powerful risk control 🛡️</li>
+        <li data-translate="overlay_point3">Real chart examples from my journey 🧠</li>
+        <li data-translate="overlay_point4">Tips you won't find on YouTube 🔥</li>
+      </ul>
+      
+      <p style="text-align: right; color: #ccc;" data-translate="overlay_thanks">Special thanks to Naledi 💫 – your support helped shape this journey. You're part of this legacy.</p>
+      
+      <p class="signature" data-translate="overlay_signature">TKINGBEAST – Only the brave will learn. Only the paid will earn.</p>
+    </div>
+  </div>
+
+  <!-- ROBOT -->
+  <div id="robot-button">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="TKingBeast Robot">
+  </div>
+  
+  <div id="robot-popup">
+    <p data-translate="robot_message1">🤖 BEEP BOOP! I'M THE BEAST'S TRADING BOT!</p>
+    <p data-translate="robot_message2">Did you know? TKingBeast once took 10 trades in a row without a single loss! 🤯</p>
+    <p data-translate="robot_message3">Click the shiny button to join the winning team!</p>
+  </div>
+
+  <script>
+    // =====================
+    // TRANSLATION SYSTEM
+    // =====================
+    const translations = {
+      en: {
+        // English translations
+        trader_title: "TKingBeast - The 94% Win Rate Trader",
+        win_rate: "Win Rate",
+        trades_taken: "Trades Taken",
+        skill: "skill",
+        book_price: "Book Price",
+        journey_text: "From blowing accounts to consistent profits - my journey wasn't easy but now I'm sharing the exact strategy that transformed my trading.",
+        year_text: "For 1 year straight, I lived on the charts - testing, failing, and finally discovering the patterns that gave me a <strong>94% win rate</strong> in scalping.",
+        book_contains: "This book contains everything I wish I knew when I started:",
+        point1: "The precise entry triggers I use daily",
+        point2: "How to read price action like an open book",
+        point3: "Risk management that protects your capital",
+        point4: "The psychological edge that separates winners from losers",
+        warning: "Warning:",
+        warning_text: "This isn't for part-time traders. If you're not ready to treat trading as a serious business, this won't work for you.",
+        book_title: "TKING BEAST ULTIMATE SCALPING BOOK",
+        learn_title: "What you'll learn:",
+        learn1: "My exact 94% win rate scalping strategy",
+        learn2: "How to identify high-probability setups",
+        learn3: "Precision entry and exit techniques",
+        learn4: "Risk management that protects your capital",
+        learn5: "The mental game of professional trading",
+        format: "Format:",
+        format_value: "PDF (Password Protected)",
+        price: "Price:",
+        price_value: "$30 (One-time payment)",
+        payment_button: "I'M READY TO PAY 😤🔱 IT'S TIME TO LOCK IN",
+        after_payment: "After payment:",
+        transaction_button: "SUBMIT YOUR TRANSACTION ID HERE AFTER PAYMENT ‼️",
+        robot_text: "hi I'm tking robot 🤖 u wanna know a secret about him just click me😉",
+        overlay_title: "TKING's Ultimate Forex Scalping Book",
+        overlay_author: "By TKINGBEAST – The Market Monster",
+        overlay_intro: "First pay to have me 🤣🤣 – this book isn't free, and it's not for the weak. Only serious traders welcome!",
+        overlay_description: "This isn't just a PDF – it's the blueprint of a beast 👑. Inside, you'll find powerful scalping strategies, real-life trade secrets, and the exact mindset that took me from hustle to freedom. If you're ready to dominate the charts, this is your weapon ⚔️.",
+        overlay_whats_inside: "What's inside:",
+        overlay_point1: "High win-rate scalping strategies 📈",
+        overlay_point2: "Simple but powerful risk control 🛡️",
+        overlay_point3: "Real chart examples from my journey 🧠",
+        overlay_point4: "Tips you won't find on YouTube 🔥",
+        overlay_thanks: "Special thanks to Naledi 💫 – your support helped shape this journey. You're part of this legacy.",
+        overlay_signature: "TKINGBEAST – Only the brave will learn. Only the paid will earn.",
+        robot_message1: "🤖 BEEP BOOP! I'M THE BEAST'S TRADING BOT!",
+        robot_message2: "Did you know? TKingBeast once took 10 trades in a row without a single loss! 🤯",
+        robot_message3: "Click the shiny button to join the winning team!"
+      },
+      am: {
+        // Amharic translations
+        trader_title: "TKingBeast - 94% ዊንሬትያለዉ ትሬደር ",
+        win_rate: "ዊንሬት",
+        trades_taken: "የተደረጉ ትሬዶች ",
+        skill: "ክህሎት",
+        book_price: "የመጽሐፍ ዋጋ",
+        journey_text: "አካውንቶችን ብሎዉ ከማረግ እስከ ወጥ በሆነ ትርፍ - ጉዞዬ ቀላል አልነበረም፣ አሁን ግን የኔን ትሬዲንግ የቀየረውን ትክክለኛ ስልት አሳያቹሀለዉ።",
+        year_text: "ከ1 ዓመት በላይ በቀጥታ፣ በትሬዲንግ ላይ ቆይቻለሁ  - እየተማርኩ፣ እየወደቅኩ፣ እና በመጨረሻም <strong>94% ዊንሬት</strong> ያለውን እስትራቴጂ   አገኘሁ።",
+        book_contains: "ይህ መጽሐፍ እኔ ስጀምር ባዉቀዉ ኖሮ ብዬ ማስበዉን  ሁሉ ይዟል፡",
+        point1: "በየቀኑ የምገባቸው ኢንትሪ ቦታዎች",
+        point2: "የትሬዲንግን እንቅስቃሴን እንደ ክፍት መጽሐፍ እንዴት እንደሚነበብ",
+        point3: "ፈንድ አካዉንትን የሚጠብቅ ሪስክ ማኔጅመንት ከ 5k funded ጀምሮ",
+        point4: "mind psychology ",
+        warning: "ማስጠንቀቂያ:",
+        warning_text: "ይህ ለከፊል ጊዜ  ትሬደር አይደለም። ትሬዲንግን እንደ ቢዝነስ ለመያዝ ካልተዘጋጁ፣ ይህ ላንተም ላንቺም አይሰራም።",
+        book_title: "የTKING BEAST  ስካልፒንግ መጽሐፍ",
+        learn_title: "ምን ይማራሉ:",
+        learn1: "የኔ ትክክለኛ 94% ዊንሬት ያለው ስካልፒንግ እስትራቴጂ",
+        learn2: "ከፍተኛ ዕድል ያላቸውን ኢንትሪይ ሴትአፕ",
+        learn3: "ትክክለኛ ኢንትሪ እና ኤግዚት ቴክኒኮች",
+        learn4: "ፈንድዎን የሚጠብቅ የአደጋ ሪስክ ማኔጅመንት",
+        learn5: "ሜንታል ጌም ኦፍ ፕሮፌሽናል ትሬዲንግ",
+        format: "ፎርማት:",
+        format_value: "PDF (በፓስዎርድ የተጠበቀ)",
+        price: "ዋጋ:",
+        price_value: "$30 (አንድ ጊዜ ክፍያ)",
+        payment_button: "ክፍያ ለመፈጸም ዝግጁ ነኝ 😤🔱 ኢትስ ታይም ቱ ሎክ ኢን",
+        after_payment: "ከክፍያ በኋላ የሚሞላ ፎርማ📍:",
+        transaction_button: "ክፍያውን ካደረጉ በኋላ ብቻ ትራንዛክሽን አይዲ እዚህ ያስገቡ ‼️",
+        robot_text: "ሰላም እኔ tking ሮቦት ነኝ 🤖 ስለእሱ ሚስጥር ማወቅ ይፈልጋሉ? በቀላሉ እኔን ፕረስ አድርጉኸ😉",
+        overlay_title: "የ TKING  የፎሬክስ ስካልፒንግ መጽሐፍ",
+        overlay_author: "welcome TO TKINGBEAST – ትሬዲንግ ኪንግደም ",
+        overlay_intro: "መጀመሪያ ክፍያ ያድርጉ እኔን ለማግኘት 🤣🤣 – ይህ መጽሐፍ በነፃ አይደለም፣ እናም ለloseroch አይደለም። ለመለወጥ ለተዘጋጁ ትሬደሮች ብቻ የተሰራ ነዉ!",
+        overlay_description: "ይህ  PDF ብቻ አይደለም – የአንድ ግዙፍ ኪንግደም እቅድ ነው 👑። በውስጡ፣ ኃይለኛ የስካልፒንግ ሴትአፕ፣ እውነተኛ የትሬዲንግ ሚስጥሮችን እና ከሌስ ወደ ዊን የወሰደኝን ትክክለኛ እስትራቴጂ ያገኛሉ። ትሬይኒንግን ለመቆጣጠር ከተዘጋጃችሁ፣ ይህ የእናንተ ዌፐን ነው ⚔️።",
+        overlay_whats_inside: "በውስጡ ምን አለ:",
+        overlay_point1: "ከፍተኛ ዊንሬት ያላቸው የስካልፒንግ እስትራቴጂ📈",
+        overlay_point2: "ቀላል ግን ኃይለኛ ሪስክ ማኔጅመንት🛡️",
+        overlay_point3: "ከጆርኒዬ ያመጣሁትን ትሩ የትሬይኒንግ ምሳሌዎች 🧠",
+        overlay_point4: "በ YouTube ላይ የማታገኛቸው ተምኸርቶች 🔥",
+        overlay_thanks: "ለ Naledi 💫 realy special thanks  – ። your the part of this journey።",
+        overlay_signature: "TKINGBEAST – ደፍር ብቻ ይማራል። የሚከፍሉት ብቻ ይጠቀማል።",
+
+        robot_message1: "🤖 ኼሎሎ! እኔ Tking ትሬዲንግ ሮቦት ነኝ!",
+
+        robot_message2: "ታውቃላችሁ? TKingBeast አንድ ጊዜ ያለ ምንም ኪሳራ 10 ንግዶችን በተከታታይ ቲፒ እንደወሰደ! 🤯",
+
+        robot_message3: "የማሸነፍ ቡድኑን ለመቀላቀል የብሩህ ቁልፉን ጠቅ ያድርጉ!"
+
+      },
+      zu: {
+        // Zulu translations
+        trader_title: "TKingBeast - Umthengisi Onezinga Lokuwina Elingu-94%",
+        win_rate: "Izinga Lokuwina",
+        trades_taken: "Ukuthengwa Okwenziwe",
+        skill: "amakhono",
+        book_price: "Inani Lencwadi",
+        journey_text: "Ukusuka ekuchithweni kwe-akhawunti kuya kuzinzile inzuzo - uhambo lwami lwalungelula kodwa manje ngabelana ngisu eliqondile eliguqula ukuhweba kwami.",
+        year_text: "Iminyaka eyodwa ngqo, ngangiphila kumachadi - ngizama, ngehluleka, futhi ekugcineni ngathola amaphethini anginikeza <strong>izinga lokuwina elingu-94%</strong> ekusikeni.",
+        book_contains: "Le ncwadi iqukethe konke engangifisa ukukwazi lapho ngiqala:",
+        point1: "Izinto eziqondile zokungena engizisebenzisa nsuku zonke",
+        point2: "Indlela yokufunda ukunyakaza kwentengo njengencwadi evulekile",
+        point3: "Ukuphathwa kwengozi okuvikela imali yakho",
+        point4: "Inzuzo yengqondo ehlukanisa abawinayo nabadlulayo",
+        warning: "Isixwayiso:",
+        warning_text: "Lokhu akuzona abathengisi besikhashana. Uma ungalungele ukubheka ukuhweba njengebhizinisi elisemqoka, lokhu ngeke kusebenzele.",
+        book_title: "INCWADI YOKUGUQULA YOKUGUQULA YOKUGUQULA YOKUGUQULA YOKUGUQULA",
+        learn_title: "Ozokufunda:",
+        learn1: "Isu lami eliqondile lokuwina elingu-94%",
+        learn2: "Indlela yokuhlonza ukusetha okunamathuba aphezulu",
+        learn3: "Amasu okuqala nokuphuma ngokunemba",
+        learn4: "Ukuphathwa kwengozi okuvikela imali yakho",
+        learn5: "Umdlalo wengqondo wabathengisi abangochwepheshe",
+        format: "Ifomethi:",
+        format_value: "PDF (Ivikwe Ngemfihlo)",
+        price: "Inani:",
+        price_value: "$30 (Inkokhelo eyodwa)",
+        payment_button: "NGIKULUNGILE UKUKHOKHA 😤🔱 ISIKHATHI SOKUZIBOPHA",
+        after_payment: "Ngemva kokukhokha:",
+        transaction_button: "NGENISA ID YAKHO YOKUHWEBA LAPHA NGEZANDO ZOKUKHOKHA ‼️",
+        robot_text: "sawubona ngingu-robot ka-tking 🤖 ufuna ukwazi imfihlo ngaye vele ungichofoza😉",
+        overlay_title: "INCWADI YOKUGUQULA YOKUGUQULA YOKUGUQULA YOKUGUQULA",
+        overlay_author: "Ngu-TKINGBEAST – Isilo Somnotho",
+        overlay_intro: "Qala khokha ukungithola 🤣🤣 – le ncwadi ayimahhala, futhi ayenzelwe ababuthakathaka. Abathengisi abasemqoka kuphela abamukelekile!",
+        overlay_description: "Lokhu akuyona nje i-PDF – kuyisakhiwo sesilo 👑. Ngaphakathi, uzothola amasu amandla okusika, izimfihlo zokuhweba zangempela, kanye nomqondo oqondile owangiholela ekulweni kuya enkululekweni. Uma usulungele ukubusa amachadi, lena iyisikhali sakho ⚔️.",
+        overlay_whats_inside: "Okukuphakathi:",
+        overlay_point1: "Amasu okusika anezinga eliphezulu lokuwina 📈",
+        overlay_point2: "Ukuphathwa kwengozi okulula kodwa okunamandla 🛡️",
+        overlay_point3: "Izibonelo zamachadi angempela ohambo lwami 🧠",
+        overlay_point4: "Amathiphu ngeke awathole ku-YouTube 🔥",
+        overlay_thanks: "Sibonga kakhulu ku-Naledi 💫 – ukusekela kwakho kwasiza ukwakha lolu hambo. Uyingxenye yale fa.",
+        overlay_signature: "TKINGBEAST – Kuphela abanesibindi abazofunda. Kuphela abakhokhayo abazozuza.",
+        robot_message1: "🤖 BEEP BOOP! NGINGU-ROBOT WOKUHWEBA WE-BEAST!",
+        robot_message2: "Uyazi? U-TKingBeast wake wenza ukuhweba okungu-10 ngokulandelana ngaphandle kokulahlekelwa okukodwa! 🤯",
+        robot_message3: "Chofoza inkinobho ekhazimulayo ujoyine iqembu eliwina!"
+      },
+      af: {
+        // Afrikaans translations
+        trader_title: "TKingBeast - Die 94% Wenkoers Handelaar",
+        win_rate: "Wenkoers",
+        trades_taken: "Handelsgeneem",
+        skill: "vaardigheid",
+        book_price: "Boek Prys",
+        journey_text: "Van rekeninge opblaas tot konsekwente wins - my reis was nie maklik nie maar nou deel ek die presiese strategie wat my handel verander het.",
+        year_text: "Vir 1 jaar reguit, het ek op die kaarte geleef - toets, misluk, en uiteindelik die patrone ontdek wat my 'n <strong>94% wenkoers</strong> in skalpering gegee het.",
+        book_contains: "Hierdie boek bevat alles wat ek wens ek het geweet toe ek begin het:",
+        point1: "Die presiese toegangsaktiveerders wat ek daagliks gebruik",
+        point2: "Hoe om prysaksie soos 'n oop boek te lees",
+        point3: "Risikobestuur wat u kapitaal beskerm",
+        point4: "Die sielkundige voorsprong wat wenners van verloorders skei",
+        warning: "Waarskuwing:",
+        warning_text: "Dit is nie vir deeltydse handelaars nie. As jy nie gereed is om handel as 'n ernstige besigheid te hanteer nie, sal dit nie vir jou werk nie.",
+        book_title: "TKING BEAST ULTIMATE SKALPERING BOEK",
+        learn_title: "Wat jy sal leer:",
+        learn1: "My presiese 94% wenkoers skalpering strategie",
+        learn2: "Hoe om hoë waarskynlikheid opset te identifiseer",
+        learn3: "Presisie toegang en verlaat tegnieke",
+        learn4: "Risikobestuur wat u kapitaal beskerm",
+        learn5: "Die verstandelike spel van professionele handel",
+        format: "Formaat:",
+        format_value: "PDF (Wagwoord Beskerm)",
+        price: "Prys:",
+        price_value: "$30 (Eenmalige betaling)",
+        payment_button: "EK IS REG OM TE BETAAL 😤🔱 DIT IS TYD OM IN TE SLUIT",
+        after_payment: "Na betaling:",
+        transaction_button: "DIEN HIER JOU TRANSASIE-ID IN NA BETALING ‼️",
+        robot_text: "hi ek is tking robot 🤖 jy wil 'n geheim oor hom weet klik net op my😉",
+        overlay_title: "TKING se Ultimate Forex Skalpering Boek",
+        overlay_author: "Deur TKINGBEAST – Die Mark Monster",
+        overlay_intro: "Betaal eers om my te hê 🤣🤣 – hierdie boek is nie gratis nie, en dit is nie vir die swakkes nie. Slegs ernstige handelaars welkom!",
+        overlay_description: "Dit is nie net 'n PDF nie – dit is die bloudruk van 'n bees 👑. Binne sal jy kragtige skalpering strategieë, werklike handel geheime, en die presiese denkwyse vind wat my van gesukkel na vryheid geneem het. As jy gereed is om die kaarte te oorheers, is dit jou wapen ⚔️.",
+        overlay_whats_inside: "Wat is binne:",
+        overlay_point1: "Hoë wenkoers skalpering strategieë 📈",
+        overlay_point2: "Eenvoudige maar kragtige risiko beheer 🛡️",
+        overlay_point3: "Regte kaart voorbeelde van my reis 🧠",
+        overlay_point4: "Wenke wat jy nie op YouTube sal vind nie 🔥",
+        overlay_thanks: "Spesiale dank aan Naledi 💫 – jou ondersteuning het gehelp om hierdie reis te vorm. Jy is deel van hierdie nalatenskap.",
+        overlay_signature: "TKINGBEAST – Slegs die dapperes sal leer. Slegs die wat betaal sal verdien.",
+        robot_message1: "🤖 BEEP BOOP! EK IS DIE BEAST SE HANDEL ROBOT!",
+        robot_message2: "Het jy geweet? TKingBeast het eenkeer 10 handels in 'n ry geneem sonder 'n enkele verlies! 🤯",
+        robot_message3: "Klik op die blink knoppie om by die wen span aan te sluit!"
+      },
+      zh: {
+        // Chinese translations
+        trader_title: "TKingBeast - 94%胜率交易员",
+        win_rate: "胜率",
+        trades_taken: "交易次数",
+        skill: "技能",
+        book_price: "书籍价格",
+        journey_text: "从爆仓到稳定盈利 - 我的旅程并不容易，但现在我要分享改变我交易的确切策略。",
+        year_text: "整整一年，我生活在图表中 - 测试、失败，最终发现了让我在剥头皮交易中获得<strong>94%胜率</strong>的模式。",
+        book_contains: "这本书包含了我希望刚开始时就知道的一切:",
+        point1: "我每天使用的精确入场触发点",
+        point2: "如何像读一本打开的书一样读懂价格行为",
+        point3: "保护您资本的风险管理",
+        point4: "区分赢家与输家的心理优势",
+        warning: "警告:",
+        warning_text: "这不适合兼职交易者。如果您没有准备好将交易视为一项严肃的业务，这对您无效。",
+        book_title: "TKING BEAST 终极剥头皮交易书",
+        learn_title: "您将学到:",
+        learn1: "我精确的94%胜率剥头皮策略",
+        learn2: "如何识别高概率设置",
+        learn3: "精确的入场和出场技巧",
+        learn4: "保护资本的风险管理",
+        learn5: "专业交易的心理游戏",
+        format: "格式:",
+        format_value: "PDF (密码保护)",
+        price: "价格:",
+        price_value: "$30 (一次性付款)",
+        payment_button: "我准备好付款了 😤🔱 是时候锁定",
+        after_payment: "付款后:",
+        transaction_button: "付款后在此提交您的交易ID ‼️",
+        robot_text: "嗨，我是tking机器人 🤖 你想知道关于他的秘密吗？点击我😉",
+        overlay_title: "TKING的终极外汇剥头皮交易书",
+        overlay_author: "作者：TKINGBEAST - 市场怪兽",
+        overlay_intro: "先付款才能拥有我 🤣🤣 - 这本书不是免费的，也不适合弱者。只欢迎认真的交易者！",
+        overlay_description: "这不仅仅是一个PDF - 它是一个野兽的蓝图 👑。在里面，你会发现强大的剥头皮策略、真实的交易秘密，以及让我从奋斗到自由的确切心态。如果你准备好主宰图表，这就是你的武器 ⚔️。",
+        overlay_whats_inside: "内容包括:",
+        overlay_point1: "高胜率剥头皮策略 📈",
+        overlay_point2: "简单但强大的风险控制 🛡️",
+        overlay_point3: "来自我旅程的真实图表示例 🧠",
+        overlay_point4: "你在YouTube上找不到的提示 🔥",
+        overlay_thanks: "特别感谢Naledi 💫 - 您的支持帮助塑造了这段旅程。您是这一遗产的一部分。",
+        overlay_signature: "TKINGBEAST - 只有勇敢者才会学习。只有付费者才会赚钱。",
+        robot_message1: "🤖 哔哔啵啵！我是野兽的交易机器人！",
+        robot_message2: "你知道吗？TKingBeast曾经连续10笔交易没有一次亏损！🤯",
+        robot_message3: "点击闪亮的按钮加入胜利团队！"
+      },
+      hi: {
+        // Hindi translations
+        trader_title: "TKingBeast - 94% जीत दर वाला व्यापारी",
+        win_rate: "जीत दर",
+        trades_taken: "किए गए ट्रेड",
+        skill: "कौशल",
+        book_price: "पुस्तक की कीमत",
+        journey_text: "खाते उड़ाने से लेकर लगातार मुनाफे तक - मेरी यात्रा आसान नहीं थी लेकिन अब मैं वही सटीक रणनीति साझा कर रहा हूं जिसने मेरे ट्रेडिंग को बदल दिया।",
+        year_text: "एक साल तक, मैं चार्ट्स पर जीया - परीक्षण करता रहा, असफल हुआ, और अंततः उन पैटर्नों की खोज की जिसने मुझे स्कैल्पिंग में <strong>94% जीत दर</strong> दी।",
+        book_contains: "इस पुस्तक में वह सब कुछ है जो मैं चाहता था कि शुरुआत में जानता होता:",
+        point1: "वे सटीक एंट्री ट्रिगर्स जो मैं रोजाना उपयोग करता हूं",
+        point2: "कैसे प्राइस एक्शन को एक खुली किताब की तरह पढ़ें",
+        point3: "जोखिम प्रबंधन जो आपकी पूंजी की रक्षा करता है",
+        point4: "वह मनोवैज्ञानिक बढ़त जो विजेताओं को हारने वालों से अलग करती है",
+        warning: "चेतावनी:",
+        warning_text: "यह अंशकालिक व्यापारियों के लिए नहीं है। यदि आप ट्रेडिंग को एक गंभीर व्यवसाय के रूप में लेने के लिए तैयार नहीं हैं, तो यह आपके लिए काम नहीं करेगा।",
+        book_title: "TKING BEAST अल्टीमेट स्कैल्पिंग बुक",
+        learn_title: "आप क्या सीखेंगे:",
+        learn1: "मरी सटीक 94% जीत दर वाली स्कैल्पिंग रणनीति",
+        learn2: "उच्च संभावना वाले सेटअप की पहचान कैसे करें",
+        learn3: "सटीक प्रवेश और निकास तकनीक",
+        learn4: "जोखिम प्रबंधन जो आपकी पूंजी की रक्षा करता है",
+        learn5: "पेशेवर ट्रेडिंग का मानसिक खेल",
+        format: "प्रारूप:",
+        format_value: "PDF (पासवर्ड संरक्षित)",
+        price: "मूल्य:",
+        price_value: "$30 (एकमुश्त भुगतान)",
+        payment_button: "मैं भुगतान करने के लिए तैयार हूं 😤🔱 यह लॉक इन करने का समय है",
+        after_payment: "भुगतान के बाद:",
+        transaction_button: "भुगतान के बाद अपना लेनदेन आईडी यहां सबमिट करें ‼️",
+        robot_text: "हाय मैं tking रोबोट हूँ 🤖 क्या आप उसके बारे में एक रहस्य जानना चाहते हैं बस मुझे क्लिक करें😉",
+        overlay_title: "TKING की अल्टीमेट फॉरेक्स स्कैल्पिंग बुक",
+        overlay_author: "TKINGBEAST द्वारा - मार्केट मॉन्स्टर",
+        overlay_intro: "पहले मुझे पाने के लिए भुगतान करें 🤣🤣 - यह पुस्तक मुफ्त नहीं है, और यह कमजोर लोगों के लिए नहीं है। केवल गंभीर व्यापारियों का स्वागत है!",
+        overlay_description: "यह सिर्फ एक PDF नहीं है - यह एक जानवर का नक्शा है 👑। अंदर, आपको शक्तिशाली स्कैल्पिंग रणनीतियाँ, वास्तविक जीवन के ट्रेड रहस्य और वह सटीक मानसिकता मिलेगी जिसने मुझे संघर्ष से आजादी तक पहुँचाया। यदि आप चार्ट्स पर राज करने के लिए तैयार हैं, तो यह आपका हथियार है ⚔️।",
+        overlay_whats_inside: "अंदर क्या है:",
+        overlay_point1: "उच्च जीत दर वाली स्कैल्पिंग रणनीतियाँ 📈",
+        overlay_point2: "सरल लेकिन शक्तिशाली जोखिम नियंत्रण 🛡️",
+        overlay_point3: "मेरी यात्रा से वास्तविक चार्ट उदाहरण 🧠",
+        overlay_point4: "वे टिप्स जो आपको YouTube पर नहीं मिलेंगी 🔥",
+        overlay_thanks: "नेलेदी 💫 को विशेष धन्यवाद - आपके समर्थन ने इस यात्रा को आकार देने में मदद की। आप इस विरासत का हिस्सा हैं।",
+        overlay_signature: "TKINGBEAST - केवल बहादुर ही सीखेंगे। केवल भुगतान करने वाले ही कमाएंगे।",
+        robot_message1: "🤖 बीप बूप! मैं बीस्ट का ट्रेडिंग बॉट हूँ!",
+        robot_message2: "क्या आप जानते हैं? TKingBeast ने एक बार लगातार 10 ट्रेड किए बिना एक भी नुकसान के! 🤯",
+        robot_message3: "विजयी टीम में शामिल होने के लिए चमकदार बटन पर क्लिक करें!"
+      },
+      es: {
+        // Spanish translations
+        trader_title: "TKingBeast - El Trader con 94% de Tasa de Aciertos",
+        win_rate: "Tasa de Aciertos",
+        trades_taken: "Operaciones Realizadas",
+        skill: "habilidad",
+        book_price: "Precio del Libro",
+        journey_text: "Desde perder cuentas hasta ganancias consistentes - mi viaje no fue fácil pero ahora comparto la estrategia exacta que transformó mi trading.",
+        year_text: "Durante 1 año seguido, viví en los gráficos - probando, fallando, y finalmente descubriendo los patrones que me dieron una <strong>tasa de aciertos del 94%</strong> en scalping.",
+        book_contains: "Este libro contiene todo lo que desearía haber sabido cuando comencé:",
+        point1: "Los desencadenantes de entrada precisos que uso diariamente",
+        point2: "Cómo leer la acción del precio como un libro abierto",
+        point3: "Gestión de riesgo que protege tu capital",
+        point4: "La ventaja psicológica que separa a los ganadores de los perdedores",
+        warning: "Advertencia:",
+        warning_text: "Esto no es para traders a tiempo parcial. Si no estás listo para tratar el trading como un negocio serio, esto no funcionará para ti.",
+        book_title: "LIBRO DE SCALPING ULTIMATE DE TKING BEAST",
+        learn_title: "Qué aprenderás:",
+        learn1: "Mi estrategia exacta de scalping con 94% de aciertos",
+        learn2: "Cómo identificar configuraciones de alta probabilidad",
+        learn3: "Técnicas precisas de entrada y salida",
+        learn4: "Gestión de riesgo que protege tu capital",
+        learn5: "El juego mental del trading profesional",
+        format: "Formato:",
+        format_value: "PDF (Protegido con contraseña)",
+        price: "Precio:",
+        price_value: "$30 (Pago único)",
+        payment_button: "ESTOY LISTO PARA PAGAR 😤🔱 ES HORA DE COMPROMETERSE",
+        after_payment: "Después del pago:",
+        transaction_button: "ENVÍA TU ID DE TRANSACCIÓN AQUÍ DESPUÉS DEL PAGO ‼️",
+        robot_text: "hola soy el robot de tking 🤖 ¿quieres saber un secreto sobre él? solo haz clic en mí😉",
+        overlay_title: "Libro Ultimate de Scalping en Forex de TKING",
+        overlay_author: "Por TKINGBEAST – El Monstruo del Mercado",
+        overlay_intro: "Primero paga para tenerme 🤣🤣 – este libro no es gratis, y no es para los débiles. ¡Solo traders serios son bienvenidos!",
+        overlay_description: "Esto no es solo un PDF – es el plano de una bestia 👑. Dentro encontrarás poderosas estrategias de scalping, secretos reales de trading y la mentalidad exacta que me llevó de la lucha a la libertad. Si estás listo para dominar los gráficos, esta es tu arma ⚔️.",
+        overlay_whats_inside: "Qué hay dentro:",
+        overlay_point1: "Estrategias de scalping con alta tasa de aciertos 📈",
+        overlay_point2: "Control de riesgo simple pero poderoso 🛡️",
+        overlay_point3: "Ejemplos reales de gráficos de mi viaje 🧠",
+        overlay_point4: "Consejos que no encontrarás en YouTube 🔥",
+        overlay_thanks: "Un agradecimiento especial a Naledi 💫 – tu apoyo ayudó a dar forma a este viaje. Eres parte de este legado.",
+        overlay_signature: "TKINGBEAST – Solo los valientes aprenderán. Solo los que pagan ganarán.",
+        robot_message1: "🤖 ¡BIP BOP! ¡SOY EL BOT DE TRADING DE LA BESTIA!",
+        robot_message2: "¿Sabías? ¡TKingBeast una vez hizo 10 trades seguidos sin una sola pérdida! 🤯",
+        robot_message3: "¡Haz clic en el botón brillante para unirte al equipo ganador!"
+      },
+      fr: {
+        // French translations
+        trader_title: "TKingBeast - Le Trader avec 94% de Taux de Réussite",
+        win_rate: "Taux de Réussite",
+        trades_taken: "Trades Effectués",
+        skill: "compétence",
+        book_price: "Prix du Livre",
+        journey_text: "De l'explosion de comptes à des profits constants - mon parcours n'a pas été facile mais maintenant je partage la stratégie exacte qui a transformé mon trading.",
+        year_text: "Pendant 1 an, j'ai vécu sur les graphiques - testant, échouant, et finalement découvrant les motifs qui m'ont donné un <strong>taux de réussite de 94%</strong> en scalping.",
+        book_contains: "Ce livre contient tout ce que j'aurais aimé savoir quand j'ai commencé:",
+        point1: "Les déclencheurs d'entrée précis que j'utilise quotidiennement",
+        point2: "Comment lire l'action des prix comme un livre ouvert",
+        point3: "La gestion des risques qui protège votre capital",
+        point4: "L'avantage psychologique qui sépare les gagnants des perdants",
+        warning: "Avertissement:",
+        warning_text: "Ceci n'est pas pour les traders à temps partiel. Si vous n'êtes pas prêt à traiter le trading comme une affaire sérieuse, cela ne fonctionnera pas pour vous.",
+        book_title: "LIVRE ULTIME DE SCALPING PAR TKING BEAST",
+        learn_title: "Ce que vous apprendrez:",
+        learn1: "Ma stratégie exacte de scalping avec 94% de réussite",
+        learn2: "Comment identifier des configurations à haute probabilité",
+        learn3: "Techniques précises d'entrée et de sortie",
+        learn4: "Gestion des risques qui protège votre capital",
+        learn5: "Le jeu mental du trading professionnel",
+        format: "Format:",
+        format_value: "PDF (Protégé par mot de passe)",
+        price: "Prix:",
+        price_value: "$30 (Paiement unique)",
+        payment_button: "JE SUIS PRÊT À PAYER 😤🔱 IL EST TEMPS DE S'ENGAGER",
+        after_payment: "Après paiement:",
+        transaction_button: "SOUMETTEZ VOTRE ID DE TRANSACTION ICI APRÈS PAIEMENT ‼️",
+        robot_text: "salut je suis le robot tking 🤖 tu veux connaître un secret sur lui clique juste sur moi😉",
+        overlay_title: "Livre Ultime de Scalping sur Forex par TKING",
+        overlay_author: "Par TKINGBEAST – Le Monstre du Marché",
+        overlay_intro: "D'abord payez pour m'avoir 🤣🤣 – ce livre n'est pas gratuit, et ce n'est pas pour les faibles. Seuls les traders sérieux sont les bienvenus !",
+        overlay_description: "Ce n'est pas juste un PDF – c'est le plan d'une bête 👑. À l'intérieur, vous trouverez des stratégies de scalping puissantes, des secrets réels de trading et l'état d'esprit exact qui m'a fait passer de la galère à la liberté. Si vous êtes prêt à dominer les graphiques, ceci est votre arme ⚔️.",
+        overlay_whats_inside: "Ce qu'il y a à l'intérieur:",
+        overlay_point1: "Stratégies de scalping à haut taux de réussite 📈",
+        overlay_point2: "Contrôle des risques simple mais puissant 🛡️",
+        overlay_point3: "Exemples réels de graphiques de mon parcours 🧠",
+        overlay_point4: "Conseils que vous ne trouverez pas sur YouTube 🔥",
+        overlay_thanks: "Remerciements spéciaux à Naledi 💫 – votre soutien a aidé à façonner ce parcours. Vous faites partie de cet héritage.",
+        overlay_signature: "TKINGBEAST – Seuls les courageux apprendront. Seuls ceux qui paient gagneront.",
+        robot_message1: "🤖 BIP BOP ! JE SUIS LE BOT DE TRADING DE LA BÊTE !",
+        robot_message2: "Le saviez-vous ? TKingBeast a une fois pris 10 trades d'affilée sans une seule perte ! 🤯",
+        robot_message3: "Cliquez sur le bouton brillant pour rejoindre l'équipe gagnante !"
+      },
+      ar: {
+        // Arabic translations
+        trader_title: "TKingBeast - المتداول بنسبة نجاح 94%",
+        win_rate: "معدل الربح",
+        trades_taken: "الصفقات المنفذة",
+        skill: "مهارة",
+        book_price: "سعر الكتاب",
+        journey_text: "من تفجير الحسابات إلى الأرباح الثابتة - رحلتي لم تكن سهلة ولكن الآن أشارك الاستراتيجية الدقيقة التي غيرت تداولي.",
+        year_text: "لمدة عام كامل، عشت على الرسوم البيانية - أختبر، أفشل، وأكتشف في النهاية الأنماط التي أعطتني <strong>معدل ربح 94%</strong> في المضاربة اليومية.",
+        book_contains: "يحتوي هذا الكتاب على كل ما تمنيت لو عرفته عندما بدأت:",
+        point1: "محفزات الدخول الدقيقة التي أستخدمها يومياً",
+        point2: "كيف تقرأ حركة السعر مثل كتاب مفتوح",
+        point3: "إدارة المخاطر التي تحمي رأس مالك",
+        point4: "الميزة النفسية التي تفصل بين الفائزين والخاسرين",
+        warning: "تحذير:",
+        warning_text: "هذا ليس للمتداولين بدوام جزئي. إذا لم تكن مستعداً لمعاملة التداول كعمل جاد، هذا لن ينفعك.",
+        book_title: "كتاب TKingBeast النهائي للمضاربة اليومية",
+        learn_title: "ما الذي ستتعلمه:",
+        learn1: "استراتيجيتي الدقيقة للمضاربة اليومية بنسبة نجاح 94%",
+        learn2: "كيفية تحديد فرص عالية الاحتمال",
+        learn3: "تقنيات دقيقة للدخول والخروج",
+        learn4: "إدارة المخاطر التي تحمي رأس مالك",
+        learn5: "اللعبة الذهنية للتداول المحترف",
+        format: "الصيغة:",
+        format_value: "PDF (محمي بكلمة مرور)",
+        price: "السعر:",
+        price_value: "$30 (دفعة لمرة واحدة)",
+        payment_button: "أنا مستعد للدفع 😤🔱 حان الوقت للالتزام",
+        after_payment: "بعد الدفع:",
+        transaction_button: "أرسل معرف المعاملة هنا بعد الدفع ‼️",
+        robot_text: "مرحباً أنا روبوت tking 🤖 هل تريد معرفة سر عنه فقط اضغط علي😉",
+        overlay_title: "كتاب TKing النهائي للمضاربة اليومية في الفوركس",
+        overlay_author: "بواسطة TKINGBEAST - وحش السوق",
+        overlay_intro: "ادفع أولاً لتحصل علي 🤣🤣 - هذا الكتاب ليس مجانياً، وهو ليس للضعفاء. فقط المتداولون الجادون مرحب بهم!",
+        overlay_description: "هذا ليس مجرد ملف PDF - إنه مخطط لوحش 👑. في الداخل، ستجد استراتيجيات مضاربة يومية قوية، أسرار تداول حقيقية، والعقلية الدقيقة التي نقلتني من الكفاح إلى الحرية. إذا كنت مستعداً للسيطرة على الرسوم البيانية، فهذا هو سلاحك ⚔️.",
+        overlay_whats_inside: "ما في الداخل:",
+        overlay_point1: "استراتيجيات مضاربة يومية بمعدل ربح عالي 📈",
+        overlay_point2: "تحكم بسيط لكن قوي في المخاطر 🛡️",
+        overlay_point3: "أمثلة حقيقية من رحلتي 🧠",
+        overlay_point4: "نصائح لن تجدها على يوتيوب 🔥",
+        overlay_thanks: "شكر خاص لـ Naledi 💫 - دعمك ساعد في تشكيل هذه الرحلة. أنت جزء من هذا الإرث.",
+        overlay_signature: "TKINGBEAST - فقط الشجعان سيتعلمون. فقط من يدفع سيكسب.",
+        robot_message1: "🤖 بيب بوب! أنا بوت التداول الخاص بالوحش!",
+        robot_message2: "هل تعلم؟ TKingBeast قام مرة بـ 10 صفقات متتالية بدون خسارة واحدة! 🤯",
+        robot_message3: "اضغط على الزر اللامع للانضمام إلى الفريق الفائز!"
+      },
+      bn: {
+        // Bengali translations
+        trader_title: "TKingBeast - 94% জয়ের হার সহ ট্রেডার",
+        win_rate: "জয়ের হার",
+        trades_taken: "গৃহীত ট্রেড",
+        skill: "দক্ষতা",
+        book_price: "বইয়ের মূল্য",
+        journey_text: "অ্যাকাউন্ট ফাটানো থেকে ধারাবাহিক মুনাফা - আমার যাত্রা সহজ ছিল না কিন্তু এখন আমি সেই সঠিক কৌশল শেয়ার করছি যা আমার ট্রেডিংকে রূপান্তরিত করেছে।",
+        year_text: "এক বছর ধরে, আমি চার্টে বাস করেছি - পরীক্ষা করেছি, ব্যর্থ হয়েছি, এবং অবশেষে সেই প্যাটার্নগুলি আবিষ্কার করেছি যা আমাকে স্ক্যাল্পিংয়ে <strong>94% জয়ের হার</strong> দিয়েছে।",
+        book_contains: "এই বইটিতে রয়েছে সবকিছু যা আমি চাই শুরুতে জানতাম:",
+        point1: "সঠিক এন্ট্রি ট্রিগার যা আমি দৈনিক ব্যবহার করি",
+        point2: "কিভাবে প্রাইস অ্যাকশনকে একটি খোলা বইয়ের মত পড়তে হয়",
+        point3: "রিস্ক ম্যানেজমেন্ট যা আপনার মূলধন রক্ষা করে",
+        point4: "মানসিক সুবিধা যা বিজয়ীদের হারানোদের থেকে আলাদা করে",
+        warning: "সতর্কতা:",
+        warning_text: "এটি খণ্ডকালীন ট্রেডারদের জন্য নয়। আপনি যদি ট্রেডিংকে একটি গুরুতর ব্যবসা হিসেবে বিবেচনা করতে প্রস্তুত না হন, এটি আপনার জন্য কাজ করবে না।",
+        book_title: "TKING BEAST আল্টিমেট স্ক্যাল্পিং বই",
+        learn_title: "আপনি কি শিখবেন:",
+        learn1: "আমার সঠিক 94% জয়ের হার সহ স্ক্যাল্পিং কৌশল",
+        learn2: "উচ্চ সম্ভাবনা সম্পন্ন সেটআপ কিভাবে চিহ্নিত করতে হয়",
+        learn3: "সঠিক এন্ট্রি এবং এক্সিট টেকনিক",
+        learn4: "রিস্ক ম্যানেজমেন্ট যা আপনার মূলধন রক্ষা করে",
+        learn5: "পেশাদার ট্রেডিংয়ের মানসিক খেলা",
+        format: "ফরম্যাট:",
+        format_value: "PDF (পাসওয়ার্ড সুরক্ষিত)",
+        price: "মূল্য:",
+        price_value: "$30 (এককালীন পেমেন্ট)",
+        payment_button: "আমি পেমেন্ট করতে প্রস্তুত 😤🔱 লক ইন করার সময় এসেছে",
+        after_payment: "পেমেন্টের পর:",
+        transaction_button: "পেমেন্টের পর আপনার ট্রানজেকশন আইডি এখানে জমা দিন ‼️",
+        robot_text: "হাই আমি tking রোবট 🤖 তুমি কি তার সম্পর্কে একটি গোপন কথা জানতে চাও শুধু আমাকে ক্লিক কর😉",
+        overlay_title: "TKING এর আল্টিমেট ফরেক্স স্ক্যাল্পিং বই",
+        overlay_author: "TKINGBEAST দ্বারা - মার্কেট মনস্টার",
+        overlay_intro: "প্রথমে আমাকে পেতে পেমেন্ট করুন 🤣🤣 - এই বইটি বিনামূল্যে নয়, এবং এটি দুর্বলদের জন্য নয়। শুধুমাত্র গুরুতর ট্রেডারদের স্বাগতম!",
+        overlay_description: "এটি শুধু একটি PDF নয় - এটি একটি জন্তুর নকশা 👑। ভিতরে, আপনি শক্তিশালী স্ক্যাল্পিং কৌশল, বাস্তব জীবনের ট্রেড সিক্রেট এবং সেই সঠিক মানসিকতা পাবেন যা আমাকে সংগ্রাম থেকে স্বাধীনতায় নিয়ে গেছে। আপনি যদি চার্টে আধিপত্য বিস্তার করতে প্রস্তুত হন, এটি আপনার অস্ত্র ⚔️।",
+        overlay_whats_inside: "ভিতরে কি আছে:",
+        overlay_point1: "উচ্চ জয়ের হার সহ স্ক্যাল্পিং কৌশল 📈",
+        overlay_point2: "সরল কিন্তু শক্তিশালী রিস্ক কন্ট্রোল 🛡️",
+        overlay_point3: "আমার যাত্রার বাস্তব চার্ট উদাহরণ 🧠",
+        overlay_point4: "টিপস যা আপনি YouTube এ পাবেন না 🔥",
+        overlay_thanks: "Naledi 💫 কে বিশেষ ধন্যবাদ - আপনার সমর্থন এই যাত্রা গঠনে সাহায্য করেছে। আপনি এই উত্তরাধিকারের অংশ।",
+        overlay_signature: "TKINGBEAST - শুধু সাহসীরা শিখবে। শুধু যারা পেমেন্ট করবে তারা উপার্জন করবে।",
+        robot_message1: "🤖 বিপ বপ! আমি বিস্টের ট্রেডিং বট!",
+        robot_message2: "আপনি কি জানেন? TKingBeast একবার কোন ক্ষতি ছাড়াই একটানা 10 ট্রেড নিয়েছিল! 🤯",
+        robot_message3: "জয়ী দলে যোগ দিতে চকচকে বাটনে ক্লিক করুন!"
+      },
+      pt: {
+        // Portuguese translations
+        trader_title: "TKingBeast - O Trader com 94% de Taxa de Acerto",
+        win_rate: "Taxa de Acerto",
+        trades_taken: "Trades Realizados",
+        skill: "habilidade",
+        book_price: "Preço do Livro",
+        journey_text: "De explodir contas a lucros consistentes - minha jornada não foi fácil mas agora compartilho a estratégia exata que transformou meu trading.",
+        year_text: "Por 1 ano seguido, vivi nos gráficos - testando, falhando, e finalmente descobrindo os padrões que me deram uma <strong>taxa de acerto de 94%</strong> em scalping.",
+        book_contains: "Este livro contém tudo que eu gostaria de saber quando comecei:",
+        point1: "Os gatilhos de entrada precisos que uso diariamente",
+        point2: "Como ler a ação do preço como um livro aberto",
+        point3: "Gerenciamento de risco que protege seu capital",
+        point4: "A vantagem psicológica que separa vencedores de perdedores",
+        warning: "Aviso:",
+        warning_text: "Isto não é para traders de meio período. Se você não está pronto para tratar trading como um negócio sério, isto não funcionará para você.",
+        book_title: "LIVRO ULTIMATE DE SCALPING DO TKING BEAST",
+        learn_title: "O que você vai aprender:",
+        learn1: "Minha estratégia exata de scalping com 94% de acerto",
+        learn2: "Como identificar configurações de alta probabilidade",
+        learn3: "Técnicas precisas de entrada e saída",
+        learn4: "Gerenciamento de risco que protege seu capital",
+        learn5: "O jogo mental do trading profissional",
+        format: "Formato:",
+        format_value: "PDF (Protegido por senha)",
+        price: "Preço:",
+        price_value: "$30 (Pagamento único)",
+        payment_button: "ESTOU PRONTO PARA PAGAR 😤🔱 É HORA DE SE COMPROMETER",
+        after_payment: "Após o pagamento:",
+        transaction_button: "ENVIE SEU ID DE TRANSAÇÃO AQUI APÓS O PAGAMENTO ‼️",
+        robot_text: "oi eu sou o robô tking 🤖 quer saber um segredo sobre ele é só clicar em mim😉",
+        overlay_title: "Livro Ultimate de Scalping em Forex do TKING",
+        overlay_author: "Por TKINGBEAST – O Monstro do Mercado",
+        overlay_intro: "Primeiro pague para me ter 🤣🤣 – este livro não é grátis, e não é para os fracos. Apenas traders sérios são bem-vindos!",
+        overlay_description: "Isto não é apenas um PDF – é o projeto de uma fera 👑. Dentro, você encontrará estratégias poderosas de scalping, segredos reais de trading e a mentalidade exata que me levou da luta à liberdade. Se você está pronto para dominar os gráficos, esta é sua arma ⚔️.",
+        overlay_whats_inside: "O que tem dentro:",
+        overlay_point1: "Estratégias de scalping com alta taxa de acerto 📈",
+        overlay_point2: "Controle de risco simples mas poderoso 🛡️",
+        overlay_point3: "Exemplos reais de gráficos da minha jornada 🧠",
+        overlay_point4: "Dicas que você não encontrará no YouTube 🔥",
+        overlay_thanks: "Agradecimentos especiais a Naledi 💫 – seu apoio ajudou a moldar esta jornada. Você faz parte deste legado.",
+        overlay_signature: "TKINGBEAST – Só os corajosos aprenderão. Só os que pagam ganharão.",
+        robot_message1: "🤖 BIP BOP! SOU O BOT DE TRADING DA BESTA!",
+        robot_message2: "Sabia? TKingBeast já fez 10 trades seguidos sem nenhuma perda! 🤯",
+        robot_message3: "Clique no botão brilhante para se juntar ao time vencedor!"
+      },
+      ru: {
+        // Russian translations
+        trader_title: "TKingBeast - Трейдер с 94% успешных сделок",
+        win_rate: "Процент побед",
+        trades_taken: "Сделки",
+        skill: "навык",
+        book_price: "Цена книги",
+        journey_text: "От слива депозитов к стабильной прибыли - мой путь был нелегким, но теперь я делюсь точной стратегией, которая изменила мой трейдинг.",
+        year_text: "Целый год я жил на графиках - тестировал, терпел неудачи и наконец обнаружил паттерны, которые дали мне <strong>94% успешных сделок</strong> в скальпинге.",
+        book_contains: "Эта книга содержит все, что я хотел бы знать, когда начинал:",
+        point1: "Точные триггеры входа, которые я использую ежедневно",
+        point2: "Как читать движение цены как открытую книгу",
+        point3: "Управление рисками, которое защищает ваш капитал",
+        point4: "Психологическое преимущество, отделяющее победителей от проигравших",
+        warning: "Предупреждение:",
+        warning_text: "Это не для трейдеров-любителей. Если вы не готовы относиться к трейдингу как к серьезному бизнесу, это не сработает для вас.",
+        book_title: "ULTIMATE СКАЛЬПИНГ ОТ TKING BEAST",
+        learn_title: "Что вы узнаете:",
+        learn1: "Моя точная стратегия скальпинга с 94% успеха",
+        learn2: "Как находить высоковероятные setups",
+        learn3: "Точные техники входа и выхода",
+        learn4: "Управление рисками, защищающее капитал",
+        learn5: "Психологическая игра профессионального трейдинга",
+        format: "Формат:",
+        format_value: "PDF (Защищен паролем)",
+        price: "Цена:",
+        price_value: "$30 (Единоразовый платеж)",
+        payment_button: "Я ГОТОВ ЗАПЛАТИТЬ 😤🔱 ПОРА ВКЛЮЧАТЬСЯ",
+        after_payment: "После оплаты:",
+        transaction_button: "ОТПРАВЬТЕ ID ТРАНЗАКЦИИ ЗДЕСЬ ПОСЛЕ ОПЛАТЫ ‼️",
+        robot_text: "привет я робот tking 🤖 хочешь узнать его секрет просто нажми на меня😉",
+        overlay_title: "ULTIMATE СКАЛЬПИНГ ПО ФОРЕКС ОТ TKING",
+        overlay_author: "Автор TKINGBEAST – Монстр рынка",
+        overlay_intro: "Сначала заплати за меня 🤣🤣 – эта книга не бесплатная, и не для слабаков. Только серьезные трейдеры!",
+        overlay_description: "Это не просто PDF – это чертеж зверя 👑. Внутри ты найдешь мощные стратегии скальпинга, реальные торговые секреты и точное мышление, которое привело меня от борьбы к свободе. Если ты готов доминировать на графиках, это твое оружие ⚔️.",
+        overlay_whats_inside: "Что внутри:",
+        overlay_point1: "Стратегии скальпинга с высокой вероятностью успеха 📈",
+        overlay_point2: "Простой, но мощный контроль рисков 🛡️",
+        overlay_point3: "Реальные примеры графиков из моего пути 🧠",
+        overlay_point4: "Советы, которых нет на YouTube 🔥",
+        overlay_thanks: "Особая благодарность Naledi 💫 – твоя поддержка помогла сформировать этот путь. Ты часть этого наследия.",
+        overlay_signature: "TKINGBEAST – Только смелые научатся. Только заплатившие заработают.",
+        robot_message1: "🤖 БИП БОП! Я ТОРГОВЫЙ БОТ ЗВЕРЯ!",
+        robot_message2: "Знаешь что? TKingBeast однажды сделал 10 сделок подряд без единого убытка! 🤯",
+        robot_message3: "Жми на блестящую кнопку, чтобы присоединиться к команде победителей!"
+      },
+      ur: {
+        // Urdu translations
+        trader_title: "TKingBeast - 94% جیت کی شرح والا ٹریڈر",
+        win_rate: "جیت کی شرح",
+        trades_taken: "ٹریڈز کی گئیں",
+        skill: "مہارت",
+        book_price: "کتاب کی قیمت",
+        journey_text: "اکاؤنٹس اڑانے سے لے کر مستقل منافع تک - میرا سفر آسان نہیں تھا لیکن اب میں وہی عین حکمت عملی شیئر کر رہا ہوں جس نے میرے ٹریڈنگ کو تبدیل کر دیا۔",
+        year_text: "ایک سال تک، میں چارٹس پر جیا - ٹیسٹ کرتا رہا، ناکام ہوا، اور آخر کار ان پیٹرنز کو دریافت کیا جس نے مجھے اسکیلپنگ میں <strong>94% جیت کی شرح</strong> دی۔",
+        book_contains: "اس کتاب میں وہ سب کچھ ہے جو میں چاہتا تھا کہ شروع میں جانتا ہوتا:",
+        point1: "وہ عین داخلے کے ٹرگرز جو میں روزانہ استعمال کرتا ہوں",
+        point2: "کیسے پرائس ایکشن کو کھلی کتاب کی طرح پڑھیں",
+        point3: "رسک مینجمنٹ جو آپ کی سرمایہ کی حفاظت کرتی ہے",
+        point4: "وہ نفسیاتی برتری جو جیتنے والوں کو ہارنے والوں سے الگ کرتی ہے",
+        warning: "انتباہ:",
+        warning_text: "یہ پارٹ ٹائم ٹریڈرز کے لیے نہیں ہے۔ اگر آپ ٹریڈنگ کو ایک سنجیدہ کاروبار کے طور پر لینے کے لیے تیار نہیں ہیں، تو یہ آپ کے لیے کام نہیں کرے گا۔",
+        book_title: "TKING BEAST الٹیمیٹ اسکیلپنگ کتاب",
+        learn_title: "آپ کیا سیکھیں گے:",
+        learn1: "میری عین 94% جیت کی شرح والی اسکیلپنگ حکمت عملی",
+        learn2: "اعلی امکان والے سیٹ اپس کیسے شناخت کریں",
+        learn3: "عین داخلے اور خارج ہونے کی تکنیک",
+        learn4: "رسک مینجمنٹ جو آپ کی سرمایہ کی حفاظت کرتی ہے",
+        learn5: "پروفیشنل ٹریڈنگ کا ذہنی کھیل",
+        format: "فارمیٹ:",
+        format_value: "PDF (پاسورڈ سے محفوظ)",
+        price: "قیمت:",
+        price_value: "$30 (ایک بار کی ادائیگی)",
+        payment_button: "میں ادائیگی کے لیے تیار ہوں 😤🔱 یہ لاک ان کرنے کا وقت ہے",
+        after_payment: "ادائیگی کے بعد:",
+        transaction_button: "ادائیگی کے بعد اپنا ٹرانزیکشن آئی ڈی یہاں جمع کروائیں ‼️",
+        robot_text: "ہائے میں tking روبوٹ ہوں 🤖 کیا آپ اس کے بارے میں ایک راز جاننا چاہتے ہیں بس مجھ پر کلک کریں😉",
+        overlay_title: "TKING کی الٹیمیٹ فاریکس اسکیلپنگ کتاب",
+        overlay_author: "بذریعہ TKINGBEAST – مارکیٹ کا عفریت",
+        overlay_intro: "پہلے مجھے حاصل کرنے کے لیے ادائیگی کریں 🤣🤣 – یہ کتاب مفت نہیں ہے، اور یہ کمزوروں کے لیے نہیں ہے۔ صرف سنجیدہ ٹریڈرز خوش آمدید!",
+        overlay_description: "یہ صرف ایک PDF نہیں ہے – یہ ایک درندے کا نقشہ ہے 👑۔ اندر، آپ کو طاقتور اسکیلپنگ حکمت عملی، حقیقی زندگی کے ٹریڈ راز اور وہی عین ذہنیت ملے گی جس نے مجھے جدوجہد سے آزادی تک پہنچایا۔ اگر آپ چارٹس پر غلبہ حاصل کرنے کے لیے تیار ہیں، تو یہ آپ کا ہتھیار ہے ⚔️۔",
+        overlay_whats_inside: "اندر کیا ہے:",
+        overlay_point1: "اعلی جیت کی شرح والی اسکیلپنگ حکمت عملیاں 📈",
+        overlay_point2: "آسان لیکن طاقتور رسک کنٹرول 🛡️",
+        overlay_point3: "میرے سفر کی حقیقی چارٹ مثالیں 🧠",
+        overlay_point4: "وہ ٹپس جو آپ کو YouTube پر نہیں ملیں گی 🔥",
+        overlay_thanks: "Naledi 💫 کا خصوصی شکریہ – آپ کی حمایت نے اس سفر کو تشکیل دینے میں مدد کی۔ آپ اس ورثے کا حصہ ہیں۔",
+        overlay_signature: "TKINGBEAST – صرف بہادر ہی سیکھیں گے۔ صرف ادا کرنے والے ہی کمائیں گے۔",
+        robot_message1: "🤖 بیپ بوپ! میں بیسٹ کا ٹریڈنگ بوٹ ہوں!",
+        robot_message2: "کیا آپ جانتے ہیں؟ TKingBeast نے ایک بار بغیر کسی نقصان کے لگاتار 10 ٹریڈز کیے تھے! 🤯",
+        robot_message3: "جیتنے والی ٹیم میں شامل ہونے کے لیے چمکدار بٹن پر کلک کریں!"
+      }
+    };
+
+    // =====================
+    // LANGUAGE SELECTOR
+    // =====================
+    const languageBtn = document.getElementById('languageBtn');
+    const languageDropdown = document.getElementById('languageDropdown');
+    const languageOptions = document.querySelectorAll('.language-option');
+
+    // Set default language
+    let currentLanguage = 'en';
+    
+    // Function to translate the page
+    function translatePage(lang) {
+      currentLanguage = lang;
+      
+      // Update all elements with data-translate attribute
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.value = translations[lang][key];
+          } else {
+            element.innerHTML = translations[lang][key];
+          }
+        }
+      });
+      
+      // Update language button text
+      const selectedOption = document.querySelector(`.language-option[data-lang="${lang}"]`);
+      if (selectedOption) {
+        languageBtn.innerHTML = `<span>${selectedOption.textContent}</span>`;
+      }
+      
+      // Update HTML lang attribute
+      document.documentElement.lang = lang;
+      
+      // Save language preference to localStorage
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Toggle dropdown
+    languageBtn.addEventListener('click', function() {
+      languageDropdown.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
+        languageDropdown.classList.remove('show');
+      }
+    });
+
+    // Change language
+    languageOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        const lang = this.getAttribute('data-lang');
+        translatePage(lang);
+        languageDropdown.classList.remove('show');
+      });
+    });
+
+    // Check for saved language preference
+    const savedLanguage = localStorage.getItem('preferredLanguage');
+    if (savedLanguage && translations[savedLanguage]) {
+      translatePage(savedLanguage);
+    }
+
+    // =====================
+    // 3D BEAST HEADER (ENHANCED)
+    // =====================
+      // Replace the 3D BEAST HEADER script section in your code with this:
+const headerContainer = document.getElementById('beast-header');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, headerContainer.offsetWidth / headerContainer.offsetHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ 
+  alpha: true, 
+  antialias: true,
+  powerPreference: "high-performance"
+});
+renderer.setSize(headerContainer.offsetWidth, headerContainer.offsetHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+headerContainer.appendChild(renderer.domElement);
+
+// Enhanced lighting setup
+const ambientLight = new THREE.AmbientLight(0x4b0082, 0.7);
+scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xFFD700, 1.5);
+directionalLight.position.set(1, 1, 2);
+scene.add(directionalLight);
+const rimLight = new THREE.DirectionalLight(0xff004c, 1);
+rimLight.position.set(-1, -1, -1);
+scene.add(rimLight);
+const pointLight1 = new THREE.PointLight(0x00fff7, 1, 5);
+pointLight1.position.set(2, 2, 2);
+scene.add(pointLight1);
+const pointLight2 = new THREE.PointLight(0xff004c, 1, 5);
+pointLight2.position.set(-2, -2, -2);
+scene.add(pointLight2);
+
+// Create realistic metal text
+const loader = new THREE.FontLoader();
+loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', function(font) {
+  const textGeometry = new THREE.TextGeometry('TKINGBEAST', {
+    font: font,
+    size: 0.8,
+    height: 0.3,
+    curveSegments: 16,
+    bevelEnabled: true,
+    bevelThickness: 0.1,
+    bevelSize: 0.08,
+    bevelSegments: 8
+  });
+  textGeometry.center();
+  
+  const textMaterial = new THREE.MeshPhysicalMaterial({
+    color: 0xFF073A ,
+    metalness: 0.95,
+    roughness: 0.2,
+    clearcoat: 1,
+    clearcoatRoughness: 0.1,
+    emissive: 0xFF073A , // Dark red
+    emissiveIntensity: 0.6, // Solid color, no dimming
+    envMapIntensity:0.4,
+    ior: 2.33,
+    specularIntensity: 1,
+    transmission: 0,
+    sheen: 0.5
+  });
+  
+  const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+  textMesh.position.set(0, 0, 0);
+  scene.add(textMesh);
+  
+  // Add bold stroke outline
+  const outlineGeometry = new THREE.TextGeometry('TKING🫅BEAST🔥', {
+    font: font,
+    size: 0.82,
+    height: 0.31,
+    curveSegments: 16,
+    bevelEnabled: true,
+    bevelThickness: 0.12,
+    bevelSize: 0.1,
+    bevelSegments: 8
+  });
+  outlineGeometry.center();
+  
+  const outlineMaterial = new THREE.MeshBasicMaterial({
+    color: 0xFF073A,
+    side: THREE.BackSide
+  });
+  const outlineMesh = new THREE.Mesh(outlineGeometry, outlineMaterial);
+  outlineMesh.position.set(0, 0, 0);
+  scene.add(outlineMesh);
+  
+  // Add more bubbles
+  const particlesGeometry = new THREE.BufferGeometry();
+  const particlesCount = 2000;
+  const posArray = new Float32Array(particlesCount * 3);
+  const colorArray = new Float32Array(particlesCount * 3);
+  const sizeArray = new Float32Array(particlesCount);
+  
+  for(let i = 0; i < particlesCount * 3; i++) {
+    posArray[i] = (Math.random() - 0.5) * 12;
+    colorArray[i] = Math.random() * 0.5 + 0.5;
+  }
+  
+  for(let i = 0; i < particlesCount; i++) {
+    sizeArray[i] = Math.random() * 0.15 + 0.08;
+  }
+  
+  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+  particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+  particlesGeometry.setAttribute('size', new THREE.BufferAttribute(sizeArray, 1));
+  
+  const particlesMaterial = new THREE.PointsMaterial({
+    size: 0.15,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending,
+    sizeAttenuation: true
+  });
+  
+  const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+  scene.add(particlesMesh);
+  
+  camera.position.z = 4;
+  
+  // Animation loop with synchronized rotation
+  const clock = new THREE.Clock();
+  const animate = () => {
+    requestAnimationFrame(animate);
+    
+    const elapsedTime = clock.getElapsedTime();
+    
+    // Synchronized 360-degree rotation
+    textMesh.rotation.y = elapsedTime * 0.3;
+    outlineMesh.rotation.y = elapsedTime * 0.3;
+    particlesMesh.rotation.y = elapsedTime * 0.3; // Bubbles rotate with text
+    
+    renderer.render(scene, camera);
+  };
+  
+  animate();
+});
+    // TIME & SESSION WIDGET
+    // =====================
+    function updateTimeAndSession() {
+      const now = new Date();
+      const day = now.getDay();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const displayHours = hours % 12 || 12;
+      const displayMinutes = minutes < 10 ? '0' + minutes : minutes;
+      
+      document.getElementById('current-time').textContent = `${displayHours}:${displayMinutes} ${ampm}`;
+      
+      const sessionElement = document.getElementById('session-status');
+      if (day >= 1 && day <= 5) { // Monday to Friday
+        if (currentLanguage === 'en') {
+          sessionElement.textContent = "TRADING SESSION: OPEN";
+        } else if (currentLanguage === 'am') {
+          sessionElement.textContent = "ትሬዲንግዛሬ: ክፍት ነዉ";
+        } else if (currentLanguage === 'zu') {
+          sessionElement.textContent = "ISIQEPHU SOKUHWEBA: SIVULIWE";
+        } else if (currentLanguage === 'af') {
+          sessionElement.textContent = "HANDEL SESSIE: OOP";
+        } else if (currentLanguage === 'zh') {
+          sessionElement.textContent = "交易时段: 开放";
+        } else if (currentLanguage === 'hi') {
+          sessionElement.textContent = "ट्रेडिंग सत्र: खुला";
+        } else if (currentLanguage === 'es') {
+          sessionElement.textContent = "SESIÓN DE TRADING: ABIERTA";
+        } else if (currentLanguage === 'fr') {
+          sessionElement.textContent = "SESSION DE TRADING: OUVERTE";
+        } else if (currentLanguage === 'ar') {
+          sessionElement.textContent = "جلسة التداول: مفتوحة";
+        } else if (currentLanguage === 'bn') {
+          sessionElement.textContent = "ট্রেডিং সেশন: খোলা";
+        } else if (currentLanguage === 'pt') {
+          sessionElement.textContent = "SESSÃO DE TRADING: ABERTA";
+        } else if (currentLanguage === 'ru') {
+          sessionElement.textContent = "ТОРГОВАЯ СЕССИЯ: ОТКРЫТА";
+        } else if (currentLanguage === 'ur') {
+          sessionElement.textContent = "ٹریڈنگ سیشن: کھلا";
+        }
+        sessionElement.className = "session-status session-open";
+      } else {
+        if (currentLanguage === 'en') {
+          sessionElement.textContent = "TRADING SESSION: CLOSED";
+        } else if (currentLanguage === 'am') {
+          sessionElement.textContent = "ትሬዲንግ ዛሬ: ዝጋ ነዉ";
+        } else if (currentLanguage === 'zu') {
+          sessionElement.textContent = "ISIQEPHU SOKUHWEBA: SIVALIWE";
+        } else if (currentLanguage === 'af') {
+          sessionElement.textContent = "HANDEL SESSIE: GESLUIT";
+        } else if (currentLanguage === 'zh') {
+          sessionElement.textContent = "交易时段: 关闭";
+        } else if (currentLanguage === 'hi') {
+          sessionElement.textContent = "ट्रेडिंग सत्र: बंद";
+        } else if (currentLanguage === 'es') {
+          sessionElement.textContent = "SESIÓN DE TRADING: CERRADA";
+        } else if (currentLanguage === 'fr') {
+          sessionElement.textContent = "SESSION DE TRADING: FERMÉE";
+        } else if (currentLanguage === 'ar') {
+          sessionElement.textContent = "جلسة التداول: مغلقة";
+        } else if (currentLanguage === 'bn') {
+          sessionElement.textContent = "ট্রেডিং সেশন: বন্ধ";
+        } else if (currentLanguage === 'pt') {
+          sessionElement.textContent = "SESSÃO DE TRADING: FECHADA";
+        } else if (currentLanguage === 'ru') {
+          sessionElement.textContent = "ТОРГОВАЯ СЕССИЯ: ЗАКРЫТА";
+        } else if (currentLanguage === 'ur') {
+          sessionElement.textContent = "ٹریڈنگ سیشن: بند";
+        }
+        sessionElement.className = "session-status session-closed";
+      }
+    }
+    
+    setInterval(updateTimeAndSession, 1000);
+    updateTimeAndSession();
+
+    // =====================
+    // ROBOT INTERACTION
+    // =====================
+    const robotBtn = document.getElementById('robot-button');
+    const robotPopup = document.getElementById('robot-popup');
+    const messages = {
+      en: [
+        "🤖 BEEP BOOP! 94% WIN RATE ACTIVATED!",
+        "✝️ don't tell him jesus help him a lot keep this in secret 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 Only 10% of traders are profitable - be part of them!",
+        "⚡ Your trading journey starts with one click!",
+        "👑 TKingBeast doesn't lose - now neither will you❗️😬"
+      ],
+      am: [
+       "🤖 ኼሎሎ! 94% ዊንሬት ነው መጽሀፉ😯!",
+        "✝️ እግዚኣብሄር በእጅጉ እንደረዳው ታውቃላችሁ አትንገሩት ይህን በሚስጥር ያዙት 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 10% ብቻ ትርፋማ ትሬደር እንዳለ ታዉቃላችሁ - ከእነሱ አንዱ ይሁኑ!",
+        "⚡ የእርስዎ የኺወት ለዉጥ ጉዞ በ አንድ ጠቅታ ይጀምራል!",
+        "👑 TKingBeast ሎስ አያረግም - አሁን አንተም ይሄን ኪንግደም ከተቀላቀልክ ሎስ አታይም❗️😬"
+      ],
+      zu: [
+        "🤖 BEEP BOOP! 94% WIN RATE ISEBENZILE!",
+        "✝️ ungamtsheli uJesu umsiza kakhulu gcina lokhu kuyimfihlo 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 Kuphela 10% yabathengisi abazuza - yiba yingxenye yabo!",
+        "⚡ Uhambo lwakho lokuhweba luqala ngokuchofoza okukodwa!",
+        "👑 TKingBeast akalahleki - manje nawe ngeke ulahlekelwe❗️😬"
+      ],
+      af: [
+        "🤖 BEEP BOOP! 94% WENKOERS GEAKTIVEER!",
+        "✝️ moenie vir hom sê Jesus help hom baie hou dit geheim 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 Slegs 10% van handelaars maak wins - wees deel van hulle!",
+        "⚡ Jou handelreis begin met een klik!",
+        "👑 TKingBeast verloor nie - nou sal jy ook nie❗️😬"
+      ],
+      zh: [
+        "🤖 哔哔啵啵！94%胜率已激活！",
+        "✝️ 别告诉他耶稣帮了他很多 保守这个秘密 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 只有10%的交易者能盈利 - 成为其中一员！",
+        "⚡ 您的交易之旅从一次点击开始！",
+        "👑 TKingBeast不会输 - 现在您也不会❗️😬"
+      ],
+      hi: [
+        "🤖 बीप बूप! 94% जीत दर सक्रिय!",
+        "✝️ उसे मत बताना यीशु ने उसकी बहुत मदद की इसे गुप्त रखें 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 केवल 10% ट्रेडर लाभदायक हैं - उनका हिस्सा बनें!",
+        "⚡ आपकी ट्रेडिंग यात्रा एक क्लिक से शुरू होती है!",
+        "👑 TKingBeast नहीं हारता - अब आप भी नहीं हारेंगे❗️😬"
+      ],
+      es: [
+        "🤖 ¡BIP BOP! ¡TASA DE ÉXITO DEL 94% ACTIVADA!",
+        "✝️ no le digas que Jesús lo ayudó mucho guarda esto en secreto 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 Solo el 10% de los traders son rentables - ¡sé parte de ellos!",
+        "⚡ ¡Tu viaje de trading comienza con un clic!",
+        "👑 TKingBeast no pierde - ¡ahora tú tampoco❗️😬"
+      ],
+      fr: [
+        "🤖 BIP BOP ! TAUX DE RÉUSSITE DE 94% ACTIVÉ !",
+        "✝️ ne lui dis pas que Jésus l'a beaucoup aidé garde ça secret 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 Seuls 10% des traders sont rentables - faites partie d'eux !",
+        "⚡ Votre voyage de trading commence par un clic !",
+        "👑 TKingBeast ne perd pas - maintenant vous non plus❗️😬"
+      ],
+      ar: [
+        "🤖 بيب بوب! تم تفعيل معدل ربح 94%!",
+        "✝️ لا تخبره أن يسوع ساعده كثيراً احفظ هذا السر 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 فقط 10% من المتداولين يحققون ربحاً - كن جزءاً منهم!",
+        "⚡ رحلتك في التداول تبدأ بنقرة واحدة!",
+        "👑 TKingBeast لا يخسر - الآن أنت أيضاً لن تخسر❗️😬"
+      ],
+      bn: [
+        "🤖 বিপ বপ! 94% জয়ের হার সক্রিয়!",
+        "✝️ তাকে বলো না যীশু তাকে অনেক সাহায্য করেছেন এটি গোপন রাখুন 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 মাত্র 10% ট্রেডার লাভজনক - তাদের অংশ হোন!",
+        "⚡ আপনার ট্রেডিং যাত্রা একটি ক্লিক দিয়ে শুরু হয়!",
+        "👑 TKingBeast হারায় না - এখন আপনিও হারাবেন না❗️😬"
+      ],
+      pt: [
+        "🤖 BIP BOP! TAXA DE ACERTO DE 94% ATIVADA!",
+        "✝️ não conte pra ele que Jesus ajudou muito guarde isso em segredo 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 Apenas 10% dos traders são lucrativos - faça parte deles!",
+        "⚡ Sua jornada no trading começa com um clique!",
+        "👑 TKingBeast não perde - agora você também não❗️😬"
+      ],
+      ru: [
+        "🤖 БИП БОП! 94% УСПЕШНЫХ СДЕЛОК АКТИВИРОВАНО!",
+        "✝️ не говори ему что Иисус сильно помог храни это в секрете 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 Только 10% трейдеров прибыльны - будь среди них!",
+        "⚡ Твое трейдерское путешествие начинается с одного клика!",
+        "👑 TKingBeast не проигрывает - теперь и ты не будешь❗️😬"
+      ],
+      ur: [
+        "🤖 بیپ بوپ! 94% جیت کی شرح چالو!",
+        "✝️ اسے مت بتانا کہ یسوع نے اس کی بہت مدد کی اسے راز میں رکھیں 😬",
+        "💎 he have a best friend called lil nahi🔥",
+        "🔥 صرف 10% ٹریڈرز منافع بخش ہیں - ان کا حصہ بنیں!",
+        "⚡ آپ کا ٹریڈنگ سفر ایک کلک سے شروع ہوتا ہے!",
+        "👑 TKingBeast نہیں ہارتا - اب آپ بھی نہیں ہارینگے❗️😬"
+      ]
+    };
+
+    robotBtn.addEventListener('click', () => {
+      const langMessages = messages[currentLanguage] || messages['en'];
+      const randomMsg = langMessages[Math.floor(Math.random() * langMessages.length)];
+      robotPopup.innerHTML = `<p>${randomMsg}</p>`;
+      robotPopup.style.display = 'block';
+      
+      setTimeout(() => {
+        robotPopup.style.display = 'none';
+      }, 5000);
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!robotBtn.contains(e.target) && !robotPopup.contains(e.target)) {
+        robotPopup.style.display = 'none';
+      }
+    });
+
+    // =====================
+    // BOOK COVER INTERACTION
+    // =====================
+    const bookCover = document.querySelector('.book-cover');
+    const bookOverlay = document.getElementById('book-overlay');
+    const closeOverlay = document.getElementById('close-overlay');
+
+    bookCover.addEventListener('click', function() {
+      bookOverlay.style.display = 'block';
+    });
+
+    closeOverlay.addEventListener('click', function() {
+      bookOverlay.style.display = 'none';
+    });
+
+    // Close overlay when clicking outside content
+    bookOverlay.addEventListener('click', function(e) {
+      if (e.target === bookOverlay) {
+        bookOverlay.style.display = 'none';
+      }
+    });
+
+    // =====================
+    // RESPONSIVE ADJUSTMENTS
+    // =====================
+    function handleResize() {
+      camera.aspect = headerContainer.offsetWidth / headerContainer.offsetHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(headerContainer.offsetWidth, headerContainer.offsetHeight);
+    }
+
+    window.addEventListener('resize', handleResize);
+  </script>
+</body>
+</html>
